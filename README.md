@@ -5,7 +5,7 @@ composer require uginroot/doctrine-type-enum:^1.0
 
 # Using
 
-#### Create set class
+#### Create enum class
 ```php
 namespace App\Type;
 
