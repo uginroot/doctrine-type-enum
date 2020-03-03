@@ -1,6 +1,6 @@
 # Install
 ```bash
-composer require uginroot/doctrine-type-enum:^1.0
+composer require uginroot/doctrine-type-enum:^1.1
 ```
 
 # Using
@@ -21,10 +21,10 @@ class Gender extends EnumAbstract{
 ```php
 namespace App\DoctrineType;
 
-use Uginroot\DoctrineTypeEnum\AbstractDoctrineTypeEnum;
+use Uginroot\DoctrineTypeEnum\EnumDoctrineTypeAbstract;
 use App\Type\Gender;
 
-class GenderType extends AbstractDoctrineTypeEnum{
+class GenderType extends EnumDoctrineTypeAbstract{
 
     public function getClass() : string{
         return Gender::class;

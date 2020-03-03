@@ -13,7 +13,7 @@ use Uginroot\DoctrineTypeEnum\Exceptions\UnexpectedExtendsException;
 use Uginroot\DoctrineTypeEnum\Exceptions\UnsupportedPlatformException;
 use Uginroot\PhpEnum\EnumAbstract;
 
-abstract class AbstractDoctrineTypeEnum extends Type
+abstract class EnumDoctrineTypeAbstract extends Type
 {
     private ?string $setClass = null;
 

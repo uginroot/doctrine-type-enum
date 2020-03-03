@@ -4,10 +4,10 @@
 namespace Uginroot\DoctrineTypeEnum\Test\Type;
 
 
-use Uginroot\DoctrineTypeEnum\AbstractDoctrineTypeEnum;
+use Uginroot\DoctrineTypeEnum\EnumDoctrineTypeAbstract;
 use Uginroot\DoctrineTypeEnum\Test\Enum\Gender;
 
-class GenderType extends AbstractDoctrineTypeEnum
+class GenderDoctrine extends EnumDoctrineTypeAbstract
 {
 
     public function getClass():string

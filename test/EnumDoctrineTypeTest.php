@@ -11,16 +11,16 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 use stdClass;
-use Uginroot\DoctrineTypeEnum\AbstractDoctrineTypeEnum;
+use Uginroot\DoctrineTypeEnum\EnumDoctrineTypeAbstract;
 use Uginroot\DoctrineTypeEnum\Exceptions\UnexpectedExtendsException;
 use Uginroot\DoctrineTypeEnum\Exceptions\UnsupportedPlatformException;
 use Uginroot\DoctrineTypeEnum\Test\Enum\Gender;
-use Uginroot\DoctrineTypeEnum\Test\Type\GenderType;
+use Uginroot\DoctrineTypeEnum\Test\Type\GenderDoctrine;
 use Uginroot\PhpEnum\EnumAbstract;
 
-class DoctrineTypeEnumTest extends TestCase
+class EnumDoctrineTypeTest extends TestCase
 {
-    private ?AbstractDoctrineTypeEnum $type;
+    private ?EnumDoctrineTypeAbstract $type;
 
     /**
      * @throws DBALException
@@ -28,7 +28,7 @@ class DoctrineTypeEnumTest extends TestCase
      */
     public static function setUpBeforeClass():void
     {
-        $class = new ReflectionClass(GenderType::class);
+        $class = new ReflectionClass(GenderDoctrine::class);
         Type::addType($class->getShortName(), $class->getName());
     }
 
@@ -38,9 +38,9 @@ class DoctrineTypeEnumTest extends TestCase
      */
     protected function setUp():void
     {
-        $class = new ReflectionClass(GenderType::class);
+        $class = new ReflectionClass(GenderDoctrine::class);
         $type = Type::getType($class->getShortName());
-        if($type instanceof AbstractDoctrineTypeEnum){
+        if($type instanceof EnumDoctrineTypeAbstract){
             $this->type = $type;
         }
     }
