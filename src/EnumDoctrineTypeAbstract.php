@@ -15,10 +15,12 @@ use Uginroot\PhpEnum\EnumAbstract;
 
 abstract class EnumDoctrineTypeAbstract extends Type
 {
-    private ?string $setClass = null;
+    /**
+     * @var string
+     */
+    private $setClass;
 
     abstract public function getClass():string;
-
 
     private function getSetClass():string
     {
@@ -57,7 +59,10 @@ abstract class EnumDoctrineTypeAbstract extends Type
         $setClass = $this->getSetClass();
         $names = $setClass::getChoice()->getNames();
         sort($names);
-        $namesQuotes = array_map(fn(string $name) => sprintf("'%s'", $name), $names);
+        $namesQuotes = [];
+        foreach ($names as $name){
+            $namesQuotes[] = sprintf("'%s'", $name);
+        }
         $namesString = implode(',', $namesQuotes);
 
         if ($platform instanceof MySqlPlatform) {

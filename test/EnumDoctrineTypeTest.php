@@ -20,7 +20,10 @@ use Uginroot\PhpEnum\EnumAbstract;
 
 class EnumDoctrineTypeTest extends TestCase
 {
-    private ?EnumDoctrineTypeAbstract $type;
+    /**
+     * @var EnumDoctrineTypeAbstract|null
+     */
+    private $type;
 
     /**
      * @throws DBALException

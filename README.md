@@ -1,12 +1,14 @@
 # Install
 ```bash
-composer require uginroot/doctrine-type-enum:^1.1
+composer require uginroot/doctrine-type-enum:^1.2
 ```
 
 # Using
 
-#### Create enum class
+## Create enum class
 ```php
+
+# Create enum class
 namespace App\Type;
 
 use Uginroot\PhpEnum\EnumAbstract;
@@ -17,7 +19,7 @@ class Gender extends EnumAbstract{
 }
 ```
 
-#### Create doctrine type class
+## Create doctrine type class
 ```php
 namespace App\DoctrineType;
 
@@ -25,14 +27,13 @@ use Uginroot\DoctrineTypeEnum\EnumDoctrineTypeAbstract;
 use App\Type\Gender;
 
 class GenderType extends EnumDoctrineTypeAbstract{
-
     public function getClass() : string{
         return Gender::class;
     }
 }
 ```
 
-#### Register doctrine type in config/packages/doctrine.yaml file
+## Register doctrine type in config/packages/doctrine.yaml file
 ```yaml
 doctrine:
     dbal:
@@ -40,7 +41,7 @@ doctrine:
             GenderType: App\DoctrineType\GenderType
 ```
 
-#### Add mapping data to entity
+## Add mapping data to entity
 ```php
 namespace App\Entity;
 
@@ -56,22 +57,22 @@ use App\Type\Gender;
 class User{
     
     /**
-     * @var integer
+     * @var integer|null
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private ?int $id;
+    private $id;
 
     /**
-    * @var Gender
+    * @var Gender|null
     * @ORM\Column(name="role", type="GenderType", nullable=true)
     */
-    private ?Gender $gender = null;
+    private $gender = null;
     
     /**
-     * @return int
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -79,7 +80,7 @@ class User{
     }
 
     /**
-     * @return Gender
+     * @return Gender|null
      */
     public  function getGender(): ?Gender
     {
