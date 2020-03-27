@@ -157,4 +157,12 @@ class EnumDoctrineTypeTest extends TestCase
         $types = $this->type->getMappedDatabaseTypes($platform);
         $this->assertContains('enum', $types);
     }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testGetName():void
+    {
+        $this->assertSame('Gender', $this->type->getName());
+    }
 }
