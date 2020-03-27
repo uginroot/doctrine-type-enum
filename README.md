@@ -1,6 +1,6 @@
 # Install
 ```bash
-composer require uginroot/doctrine-type-enum:^1.2
+composer require uginroot/doctrine-type-enum:^1.3
 ```
 
 # Using
