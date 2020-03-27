@@ -130,4 +130,18 @@ abstract class EnumDoctrineTypeAbstract extends Type
 
         throw new UnsupportedPlatformException(sprintf('Platform %s not support', get_class($platform)));
     }
+
+    public function getMappedDatabaseTypes(AbstractPlatform $platform): array
+    {
+        $types = parent::getMappedDatabaseTypes($platform);
+
+        if ($platform instanceof MySqlPlatform) {
+            $platformType = 'enum';
+            if(!in_array($platformType, $types)){
+                $types[] = $platformType;
+            }
+        }
+
+        return $types;
+    }
 }
