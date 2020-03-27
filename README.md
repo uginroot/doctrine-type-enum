@@ -5,10 +5,10 @@ composer require uginroot/doctrine-type-enum:^1.2
 
 # Using
 
-## Create enum class
+## Create doctrine type
 ```php
 
-# Create enum class
+// Create enum class
 namespace App\Type;
 
 use Uginroot\PhpEnum\EnumAbstract;
@@ -17,36 +17,22 @@ class Gender extends EnumAbstract{
     public const FEMALE = 1;
     public const MALE = 0;
 }
-```
 
-## Create doctrine type class
-```php
+// Create doctrine type class
 namespace App\DoctrineType;
 
 use Uginroot\DoctrineTypeEnum\EnumDoctrineTypeAbstract;
-use App\Type\Gender;
 
 class GenderType extends EnumDoctrineTypeAbstract{
     public function getClass() : string{
         return Gender::class;
     }
 }
-```
 
-## Register doctrine type in config/packages/doctrine.yaml file
-```yaml
-doctrine:
-    dbal:
-        types:
-            GenderType: App\DoctrineType\GenderType
-```
-
-## Add mapping data to entity
-```php
+// Add mapping data to entity
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Type\Gender;
 
 /**
  * User
@@ -69,7 +55,7 @@ class User{
     * @var Gender|null
     * @ORM\Column(name="role", type="GenderType", nullable=true)
     */
-    private $gender = null;
+    private $gender;
     
     /**
      * @return int|null
@@ -88,7 +74,7 @@ class User{
     }
 
     /**
-     * @param Gender $role
+     * @param Gender $gender
      * @return $this
      */
     public function setGender(Gender $gender):self
@@ -97,4 +83,13 @@ class User{
         return $this;
     }
 }
+```
+
+## Register doctrine type
+```yaml
+# config/packages/doctrine.yaml
+doctrine:
+    dbal:
+        types:
+            GenderType: App\DoctrineType\GenderType
 ```
